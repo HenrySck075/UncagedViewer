@@ -1,0 +1,87 @@
+<!--98% StackOverflow :emoji9:-->
+<!doctype html>
+<head>
+    <title>Uncaged Viewer</title>
+    <link rel="icon" type="image/x-icon" href="/static/icons8-google-drive-32.png">
+    <link rel="stylesheet" href="/static/mmb.css">
+    <script id="navigationHistory">let navHistory = ["a"];</script>
+</head>
+<!--<div style="height: 20; border: 1px solid #535353; margin:0" id="folderNavigator">
+                <p style="top:0; text-align: center; color:#fff" class="folderNavEntry" onclick="window.location.href = '/'">Uncaged Library</p>-->
+<body>
+    <p id="folderName" style="display:none"></p>
+    <img src="/static/windows-11-blue-stock-official-3840x2160-5656.jpg" style="display: flex; z-index: -2; position: absolute; height: 100%; width: 100%; margin: -2px;">
+    <div style="position:fixed" id="uiMain">
+        <!--<div id="properties" class="micaBg" style="position:fixed">
+            <div style="display: flex; justify-content: left;" id="propDraggable">
+                <p style="margin-left: 35px;">___ Properties</p>
+                <img style="margin: 20px; width: 40px; height: 40px; margin-left: auto;" onclick="closeProperties()" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAACXBIWXMAAAsTAAALEwEAmpwYAAAC2ElEQVR4nO3YXU/TUBgH8H2DEaXtjQkMI0EFuu4UNrpCO8ZeKIwBY0C48bOp10oiF3KhQLfEzAviRzABBnQvHT3t/WMqVA2EttuOyy72T3p78svp87TPOYHAIIP0cVr5N0PW2t57M7dzYii7UVLrNpAc1biFkxo7/67FSkMdLaIXi0Ezt1cxc7tgru6AuVK0zJWC3C1OQ3Jc4yRcYxdAmxbh+rVwevYq9qRL3DZgpQg4W7Bamc6R2j2cNhm3gXD9Muof+ThuC4xMAYz0htVK5mVyuBhcTUThanzGH/K25h7DbYKR2oCbpXWsL62L/nGS6IGDyxc8VMcibz0XM1d3VQ8c3CzmoZXIYV1aFUnhLp8jqIa4Y0+g3a2msm2649agJeegJSlYj2dFEriLUc48H53296UwlIKAM1vYHbcC+rwCenzZqsczD2pS4xOCb1yIs85H2Pbq2kgXBCO1iV1x4jI0hSw059JWPZqUe4b7i8wLdkN44KARTUFjdtGqo6TcM5wTu1vthnDHJaHOL0ItksDt1Fx1bNr3l8A1zURe+N0QLrg6SkCNk6BnO/cAOa8IupjFfYlz0pxLC81YCvcl7l9kYyaJ+xLnxO5UuyFq/YhzgH679SzEWfvDU5X9pz3cvXZwH4anfnykWPg0HLY+M/8Z2SnugArDIc3BVwpZZQbJ/YmjEZQYHko0Tx7pY9gEXzjnIYlsB3dx2xDfXXF3j8ogXKaQ2FPc+Qgr71Nh4YAKYzcckZ3sBBe4yyEVFr7QEeyK6wbZDc6JSvGC/RqJIxsRKVbjFkwSI1OZQqJvJMObJQZ5j/xaWFJJznPlNpAqzXsfmuzrCNLDZtknUmV472OnjpaC2qRQIf3jV71qkuZPvz3ze7uAUPB6IlYhPZWojyHbwf1BjqHg5fhMhfTIpN5HdoJz8nOEHbKvI6oh7sj3odpH7G4t0fyRXXPHQbaz67dBBgn0Jr8AI45VYAK3zzsAAAAASUVORK5CYII=">
+            </div>
+            <div id="propMain">
+                <img src="" id="itemIcon" style="margin:14px; width: 14px; height: auto;"><input type="text" id="itemName" class="micaBg" disabled value="jsdfhuisdgbhfibgdsifghbdisgh"><br/>
+                <p id="itemType" style="font-size:25px">Type: who</p>
+                <p id="itemSize" style="font-size:25px">Size: 128 megapixels</p>
+                <p id="itemCreatedDate" style="font-size:25px">Created: Jan 1, 1970 - 00:00:00</p>
+                <p id="itemLastModDate" style="font-size:25px">Last modified: Jan 1, 1984 - 00:00:00</p>
+            </div>
+        </div>-->
+        <div id="window" class="micaWindow micaBg" style="position: fixed;">        
+            <div id="tooltip" style="display:flex; justify-content:left; position:sticky; width:100%; top:0; z-index: 2; max-height: 25px;" class="invisibleBg">
+                <img onclick="back()" src="" style="margin: 20px; width: 40px; height: 40px" id="back">
+                <img onclick="forward()" src="" style="margin: 20px; width: 40px; height: 40px" id="forward">
+                <!--<label for="search" style="margin-left: auto;">Search</label>
+                <input type="text" oninput="filterUnmatch(event.target.value)" style="float:right" id="search"> -->
+            </div>
+            <div id="main" style="margin-top: 90px;" class="invisibleBg" data-current="a">
+            </div>
+
+            
+        </div>
+        <div id="imgViewer" class="micaBg" style="z-index: 3;">
+            <div id="imgViewerHead" style="display: flex; justify-content: right; width:auto">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAeElEQVR4nO3TQQqAIBBGYa9Xeq26TDqHqCvoYVrVJqIgSMEYoffB7P+HaAwAAAAAADhNfRp9l1bfp+3tgv3mxN0v2LSYXK2Nl+PyAxocLzUDNMZLrQCt8VIjQHO8FAU8fGLt8VL2AnG4RrQwPrg4ZwcAAAAAAPADOx4QUPABc/NwAAAAAElFTkSuQmCC"
+            onclick="off()" style="float:right;" class="you" />
+            </div>
+            
+            
+            <span class="loader center__both" style="z-index: -2;"></span>
+            <span class="loader reverse center__both" style="z-index: -2;"></span>
+            <img src="" draggable="true" style="width: 400px; height: auto; z-index: -1;" class="center__both draggable" id="image"/>
+            <div class="tooltip">
+                <img onclick="zoomIn()" class="you" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAAD30lEQVR4nO2Y3W9TZRzHz52STO9MiuXCGAaOycrCvNQLvZA/AHxJvNEQh4jvQmAsEpS3LLCAbl1ftnVtNRr5AzTeNLtQSDWE7MUAri1tN8pegG7roKft9jHPaZ3zsMY9PedUl/Sb/G569fmcPi+/36MotdRSS0UJwuNBeN2/iHegQHigwJSvQM6XJ9efZ6o3T7gvj8et8lovPKb8X+KHLQHoCyyy4F+CgcVi+UQVoL8AfflieXPgUcGdZcGVpbcnS/1/Bv49bAjAWT/kA0uwZngVXFlwPoCu++S+WqDDB49WFf4bqA/CcACoFL67KMCXC3B+nkudGTZWBd4PzUGYMgv+QgbOZ+DcHMmOeZqq8eVNh++c1wQ4O0uyI4PNEnixToNw1UJ4OmbhTJrfziXYYLqA2LAy8C87Y2xvG+XZoyO85I6sFZ7Td+HEHY6bflTKnjaOI78vC2xrH14z/Mk78MUM88cmTVxK2jkvuWz0AhLwHJ+GY1M4TbthpS6p0prXC0jC89kkmYPTJtzYWntQwYbVC0jC034bjqZ41bCA1ttUcNroBWTh21Jw+BZuwwJaY1bBUakXqACegxNcMizgKzBdDn6XM6aBOo6M4mgbpalUAnx724hWQqBYwzSWapuodlFDPO+MrAp/aAI+TTJpWKC/gFruy+/Q4I0JNLQPrQ4/Dp8kyRoXyKOWWzZmCZSB56OEOQLT5db8rp6bxpdQd6QcPO/HTVhCpUlKurfRb+J/27B6+A/icCBqwiYWY2AljZleQBb+vRi8G8FlWEDMsJV0lXoBafgovBNlj2GBLqhzZclItsQPCcjC7xsjs3+EOsWMiAFcBl5cUnoBqS8fgbfH8ChmRbweiAFcpiXWC8jAt46hvnmdpxUzI14PZFriF7tuLgu80B2VgWfvH5xWrBgpxetBJV2lDPzu8L1cY+CKQ7EiXRlsnXMkrIJ/Y/gBW/2/8szFa6nmn2YaLJEQTx/a64HZ8EP3afz6Clu/G2XHjylaBtPjzaH0ZkskTs7xxJk0g2bB7wnfU+v94SL8D7d4bnBWq52h9C+bvAlrJC7AI+L14PMZMgbg1b03ONX07dUtDRevxcSX/wu+JZSO2n3J2xs9iZTNG7NmOYmI1wMxgIsZVuaSah3DvfKodIRST7UMzsb+Ae9NoJXVEiWROjHDHp7AdWiCy2IY+TiJ+mECVXSVB2Jc3h+hpzXKK+Vu2OZQevPOUPrnTb7xv+GrKWFG7D3Jeps3Pv6QQE2iyrHX/ol18E/YvPHrynqIfTUJT3zJ5onvU9ZL7Csl1hu8TuLGk72Jt5Z/rKWWWpSV+RPtbdGGaTnJFgAAAABJRU5ErkJggg==">
+                <img onclick="zoomOut()" class="you" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAELElEQVR4nO3ZXUxbZRzH8XrjhfHKBEebeCFEzUDdxmCJXdQtXnjl272JZma4gcDYBoyXMRkbUTfnmOgGhdEWTYyJM5EbE8cC02Qmm5G1oyjlpe0GW2EFT3uArrR8zVNel7RxW885Zaa/5HfDBeGT5znPec4fnS6VVFJRLd/Dox2wzQK17RG+M4f57WyYK6JtYc63zdHSFqLQFGS9bi3GDJmWCE3WCD7LPJgjC20XDcNZ0Tlom4PWELSEoDmIvTlIcTM8thZW4AkrnLFECFvn4Z4Rd+BMEE4HoWkWb9MsO4BHkoL4Bl6xwqgAPCjiq1lomoEvp6Fxmq4mmXRNER3wbgeElEKcmoaTMpwIMHJc4lmtEO9ZYV5pxBeBKITjEmPHpnhaVYQFXrXCnFqIz/1wTILPpnAc8vK4mg/2qOqIf+CTKTjqw6wKRJxOWiEaJuHIbebrJtiuKOJbyLBEFraUFoijPqi/DR+P87uikOjLTmNE3QQcGoeD47ys2LXjvt7YCiJqvVBzi1ZFIGbYnkQEVWPc0inx1hcXwKQhbsKBMSi7wXMJQ6K32DgI0x2oc05zsF+mxiFT3S9T6ZCp7JM50CdT0SdTfk2mzC6z3y6zzxag1BZgz9UAJb0BikT/DFDmDMZFVIxC2ShvJwwRV/F4K1HQ7WNjpYMN0fbxYtVKX6i6ttznq5dqJ3uxWaI1ojayau2UDYViI27AvusUJ74iYXrjbaf3O72KQNbX2Ciyz8RDsNdNdcKQxQ+jmM+EkpBC20xMRKkH9rgoTxjSFqYr3oNd7ZAxNgywpe5vttT9Rd7hlW4+3L/cnPqlOti02I31DjYcEe3D2Oik3B2JjXBDsZv8xCHi81Sj0ykmwgUFLl5LHBKiMJmIj4aZLxogLWGIGBQkDTECu4fo1SmV5iC2ZCAKhuHDIQVOrKWcDlKSDMSuIUK7nTylGESMbKLTDm0R7HQqdGFcnVOzfKAlIt+Jf0c/BsUhYu7UOM3PGiF489Lkpzq10ugn7USAYbURr3eNkmG+Imd3jmxTDXNS4pnoyEYlxBu/esk0Xybr3CA5XZP+zRf9W1XDiLmTGNmosRKZ7ZfJ+mGAnPMT5PVI5HZL/k2/+F5SDSPmTg0+2sW0Q4HTSXrr0kRDhuUPf9Y55zIir0ci58LUVUOrx7vOdF29bSYiRjZi2vGg7wlxxOY70Ivflf2jy5hzwSfdjXDLepMHfYtbVh0jIqYdYlBQNcbN/7o7iWvHrkFqYr3scnskY263JN2FMC1WK8xSxDf2fg/v7PVQVOqmokTUxU5xi72XC6B4JsR20q9GrGD8epNLvQNA6RiaXcaFPzomRtuVSTSGFGaNxvB/Whm9ybU1Lsbk6dQ9TDHEWJl0k6c/rX1E2/89Ko1Jf1gRq7dZeovnp3VfDz65/MNUUklFdz/5F1XBGK8dDPhcAAAAAElFTkSuQmCC">
+            </div>
+            <picture class="noidea" style="float:right; right:60px" onclick="nextImg()">
+                <source media="(prefers-color-scheme: dark)" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA1UlEQVR4nO3aOwoCQRRE0dqA4Giu+4/choiOK3AtV2ycpP1kgvS7JzWasip5dCJJkvRDwB7YpCJgB9yAK7BN0Y9f1AoBOPDqUmYOwBo4vQmhThMwhBjCg02IITQ2IYbQ2IQYQmMTYgiNTYghNDYhhtDYhBhCYxPSQtg8T2m9GZhSvAlHYJXCAcyP3zIyYALOH46rY1+YqXxUxY/Hf75j7TMy3DxuvuPmMzLcPG6+4+YzMtw8br7j5jMyKm/+y0PJefgz1qL8U9lUfyy9KP1cXpIk5V/dAb6uKbTJzgWkAAAAAElFTkSuQmCC">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAx0lEQVR4nO3awQnCQBhE4deAsMZ77P9kGyKErcBaVvJrwIMeBcm8D1JAJpM5LAuSJEm/dQYmQs3AHejAidCXH68nLoTL28tvz5L0OzTg9iGEqCY0Q8AQVjYBQyg2AUMoNgFDKDYBQyg2AUMoNgFDKDYBQyg2gecR2vLleO1IeBOuwIEALTmAKfkXaMmHqs2Xxy8/rD3+893B27nm2uPaD9ce17679jvXXHtc++Ha49r3hLVfxV+UnNOvypJ+WXoTfV1ekiTxlx7YfPuPmFVVIwAAAABJRU5ErkJggg==">
+            </picture>
+            <picture class="noidea" style="float:left; left:60px" onclick="prevImg()">
+                <source media="(prefers-color-scheme: dark)" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA1UlEQVR4nO3aMU7DQBSE4elp4uQAibh/wR3okJKcISf5Iz+0CC2io0D7/q9059kZF9YmkiRJ/wiwAed0BByAD+ABvKbpyw99QuCz9ld+ekvDkx/uwCkrw5fHk59Y+6wMN4+bn7j5rAw3j5ufuPmsDDePm5+4+ayM5pvffvmNdQOOWRnwAry3PPld+wC+TWCv+2yfxZYO6PwRHAwhhlBsQgyh2IQYQrEJMYRiE2IIxSbEEIpNiCEUmxBDKDYhFcKx7UXJofVV2aH1ZelpDpevB5IkSfl7T0sQKazPsqGyAAAAAElFTkSuQmCC">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAyElEQVR4nO3awQkCMRRF0bt3E8cCBPsHi3AnSGqwkoifCbhxK5J3D6SAvPx5DCEgSZL0XzbgTKgG3IEncCF082NfUSFswONj83NdCTz5sa8OnFhcc/N48sOxx2++W3iLa7Y9tv2w7bHtu22/uGbbY9sP2x7bvie0/fHLNdZjv+Ja2gG4pRbeW3wApH8CU/SPz2QIGEJxEjCE4iRgCMVJwBCKk4AhFCcBQyhOAoZQnAQMoTgJhD+UnKKfyk7Rj6Wn6OfykiSJn3gB7+H7kQKML2UAAAAASUVORK5CYII=">
+            </picture>
+        </div>
+    </div>
+    <template>
+        <img 
+        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAACXBIWXMAAAsTAAALEwEAmpwYAAAFTElEQVR4nO2Y+09TZxjH+XFRmLuJyrVcShkMhexSCtNtJMuyuNH+BfOP2S+A081tKooMkDvlonObY2aZmyJOExe3JUZa2lLOOW25FCmVso31u7w1MhBBejy3nj7f5JM0UH7g+ZzzPO/zpqRQKBQKhUKhUCgUCoVCoVAom8TKIdvGo9/GI2QTgKSGj9VgqJaDSbHiWwXMqv6PC5ojyGoju4DYk6/+PwstYuXRp4QAajvCBhJ4zMsvQANPmk3DkACBBKj+FNroDVC/EDZqQeoXw6YCNAMEEqA5DvmWYZ8LwhXmEIm4Y4yHOfTNBWO/ozdAkK/4DTNhLEY8wJLrsbDfse9QCxLkKX50g8Kvhn1HKgk0A4T/285mT/6j3I948JEE7YgECA8KwXr+Vov/kN65IAmwSdR+3GEubgFsMNMbIEgjIBJH+1k9kEmAII2AePr/6jlAAgRpBLAzP7UgFemjIawuh+gYmliLWB0tYpBNAhuumw1eqYrPoEVMWF8UtuGyJYud89nxlME+s59Jsf0mvICD7mW8dWsRlmsLqBpdwNu3I6idjKrewnQvwMoBlusLKD43BdPgWkrOT8dEqF1Q3Qqo5aJ49cc5mAYCm1L9q3T9mQQ8fPIno6i4NIei/sCWsIwuqF5Y3bwBH3qj2DcchLE/EBeJIkHTAj7w/Iuyb2dgtPtFYbmmfQmaFcBOOqUXplHY538qKjUuQZMCDrqWY6eawl6/JFSOaFeC5gS87/wHpsEACnp8klI5Eoqr9b1zO4I3b4Sx/0YYNX8sybZnaErAe2N/wzgQQH6PTxbMT5Bg5YEDtxZRPjyLvRdnsfe72dgMKvtmJva55veIfgW8e+cvFNr9yO/2yYr56uMlWPlo7ORUPhzEvu/XC3jlwgxKv57G/pv39Seg5s+lWJvI6xIUwfyIBCsXhWUkhPIfgk8UUHp+WtJlT3UB7LXO7/Ihr1NQFPOV0MqGzYZ0BSv+FgWUSChBVQEHfluEoVOAoUMdXr8cQuWVUGzLjldAybkpVF8PJ64AdsIwdPDIbVeX4qEp0QJeHppC1VNKUEUAG3ZqFz53tYTBKdEC2N9WjYYTRwAbgDlnec1hGgiIFlA8wCQsaF/Aaz/dQ04bp1mKmASRAkz9AVSJuPZQRABbcCouBZHdymkeoz0gWoDJHoj7AlB2AWzBKbs4i6wWLmEw2gOiBRT1BWCJ4+5JdgHsRjOrZTLhMNr9ogUYe/1bliC7gMyvJpGoFPT6RQswbvEWVn4BzZNIZAp6fKIFFPb4UbnB3ZNiAjLOeJHoFHT7RAso7PZtKkF2AXuavNAD+d0+0QIKunwrd0/KCzjthV7I6/SJFpDf6YP5l5DyAnafnoCeyOsURAvI7xDWSZBdwK5TE9AbBiZBpIC8dgHmn0MKCmicgB4xtPOiBeSdFVYGs+wC0k96oFdy2znRAgxtPN64PK+AgBMe6JncNk60gNxWXn4BO094oHdy2jjtCnjpuBvJQHYLp1EBX7qRLGS3cNoT8OIXbiQTWc2cxgR87kKykdns1Y6AF465kIxknvFqQ8Dzx1xIVjKavBoQ8Nk4kpmMJq+6Ap77dBzJzp5TXhUFHB0HMf5AghoCdhxxgnDGarC70aO8gGePOEE4V2rALvGUFfCJE4RzTQ2YBMUEpB52hNIOO0A41tRgF7vEa+XvyS4grWFsKK3BAcKxrgbpxz035RdQf8e0vX4smFrvAOFYqUFagyOa3ui2pCiRZz52ZG+ru9u3re7u/Pa6MSQzqfVj0R1Hnd6dJz3VihSfQqFQKBQKhUKhUCgUCoWSkqj5D9h8y5rKgx55AAAAAElFTkSuQmCC" 
+        style="height: auto; width: 150px;" 
+        data-src=""
+        class="lazy rounded-border"/>
+        <p style="width:250px; text-align: center; margin: auto; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; top:10px"></p>
+    </template>
+    <template>
+        <img src="/static/folder.png" style="height: auto; width: 250px;" />
+        <p style="width:250px; text-align: center; margin: auto;"></p>
+    </template>
+    <template>
+        <p style="top:0; text-align: center; color:#fff" class="folderNavEntry" onclick=""></p>
+    </template>
+
+    
+</body>
+
+<script src="/static/me.js" class="s"></script>
+<script src="/static/contextMenu.js" class="s"></script>
+<script src="/static/draggable.js" class="s"></script>
+<script src="/static/also.js" class="s"></script>
+<script defer src="/static/sendHelp.js"></script>

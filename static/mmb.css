@@ -1,0 +1,216 @@
+#imgViewer {
+    position: fixed; /* Sit on top of the page content */
+    width: 90vw; /* Full width (cover the whole page) */
+    height: 90vh; /* Full height (cover the whole page) */
+    transform-origin: center center;
+    transform: scale(0,0);
+    left: 5%;
+    top: 5%;
+    background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+    z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+}
+/*
+div {
+    background-color: transparent;
+}
+*/
+div::-webkit-scrollbar, body::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+div, body {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/*https://cssloaders.github.io/*/
+.loader {
+    width: 56px;
+    height: 56px;
+    border: 12px solid #FFF;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+    transform-origin: 0px;
+}
+.reverse {
+    animation-direction: reverse;
+}
+.center__both {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+input {
+    height: 50px;
+    border-radius: 8px;
+    width: 100%;
+    font-size: 25px;
+}
+.tooltip {
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, -90%);
+    display: flex; 
+    justify-content: space-around;
+}
+@keyframes rotation {
+0% {
+    transform: rotate(0deg);
+}
+100% {
+    transform: rotate(360deg);
+}
+} 
+
+@keyframes hi {
+    from {margin-top: 0;}
+    to {margin-top: -10px;}
+}
+#main {
+    display: flex;
+    justify-content: left;
+    flex-wrap: wrap;
+}
+.rounded-border {
+    border-radius: 10%;
+}
+p, label {
+    font-family: 'Segoe UI';
+    font-size: 30px;
+}
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    cursor: auto
+}
+.button {
+    width: 300px;
+    margin:25px;
+    background-color: transparent;
+}
+.button:hover {
+    cursor: pointer;
+    background-color: #5cd1ff4f;
+}
+
+.invisibleBg {
+    background-color: transparent;
+}
+.you:hover {
+    cursor: pointer;
+}
+.folderNavEntry {
+    height: 17px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.folderNavEntry:hover {
+    background-color: #E5F3FF;
+    border: 1px solid #CCE8FF;
+    cursor: pointer;
+}
+.noidea {
+    position:absolute;
+    top:50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+.noidea:hover {
+    cursor: pointer;
+}
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-variation-settings: 'wght' 450;
+    line-height: 150%;
+    
+}
+::-webkit-scrollbar-track {
+    border-radius: 8px;
+    background-color: #F7F7F7;
+}
+::-webkit-scrollbar {
+width: 12px;
+background-color: #F5F5F5;
+border-radius: 0 8px 8px 0;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 0 8px 8px 0;
+    background-color: #181818a8;
+}
+.micaWindow {
+    width: 80vw;
+    height: 80vh;
+    left: 10vw;
+    padding: 16px 16px 16px 30px;
+    margin: 10vh 0;
+    overflow-y: auto;
+}
+.micaBg {
+    border-color: #e1e6ea;
+    background-color: #f7f9fcdb;
+    /*background-image: url('/static/acrylic.png');
+    background-repeat: repeat;*/
+    overflow: auto;
+    border-radius: 8px;
+    border-width: thin;
+    border-style: solid;
+    -webkit-backdrop-filter: blur(40px);
+    backdrop-filter: blur(40px);
+    box-shadow: 0px 25.6px 57.6px rgb(0 0 0 / 14%), 0px 0px 16.4px rgb(0 0 0 / 12%);
+}
+
+/* Portrait */
+@media screen 
+  and (min-width: 412px) 
+  and (min-height: 892px) 
+  and (-webkit-device-pixel-ratio: 3) 
+  and (orientation: portrait) {
+    .micaWindow {
+        width: 100vw;
+        height: 100vh;
+        left: 0;
+        padding: 16px 16px 16px 30px;
+        margin: 0 0;
+    }
+}
+@media (prefers-color-scheme: dark) {
+    .micaBg {
+    color: white;
+    background-color: #181818a8;
+    border-color: #1a1a1a1a;
+    }
+    html, .folderNavEntry{
+        background-color: #191919;
+    }
+    .folderNavEntry {
+        border: 1px solid #191919
+    }
+    input {
+        background-color: #191919;
+        color: #535353;
+        border: 1px solid #535353;
+    }
+    p, label {
+        color: #FFF
+    }
+    hr {
+        color: gray;
+    }
+    
+    .button:hover {
+        cursor: pointer;
+        background-color: #ffffff21;
+    }
+    .folderNavEntry:hover {
+        height: 17px;
+        background-color: #434343;
+        border: 1px solid #191919
+    }
+}
