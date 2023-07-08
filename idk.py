@@ -1,14 +1,26 @@
 import os,pickle
+import webbrowser
+from shutil import which
+import shlex
+def wbopentermux(url,new=0,autoraise=True):
+    os.system("termux-open-url "+shlex.quote(url))
+def wbopennewtermux(url): wbopentermux(url)
+if which("termux-open-url") is not None:
+    webbrowser.open = wbopentermux
+    webbrowser.open_new = wbopennewtermux
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.oauth2.credentials import Credentials
 from google.auth.transport.requests import Request
 from googleapiclient.discovery import build
-import webbrowser
-from shutil import which
 
-def wbopentermux(url,new=0,autoraise=True):
-    os.system(url)
-def wbopennewtermux(url): wbopentermux(url)
+port = 8080
+import socket
+def port_in_use():
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:                                                        return s.connect_ex(('localhost', port)) == 0
+
+while port_in_use():
+
+    port+=1
 
 def create_service(client_secret_file:str, api_name, api_version, scope, prefix=''):
     CLIENT_SECRET_FILE = client_secret_file
@@ -17,9 +29,6 @@ def create_service(client_secret_file:str, api_name, api_version, scope, prefix=
     SCOPES = [f'https://www.googleapis.com/auth/{s}' for s in scope]
 	
     #termux instance
-    if which("termux-open-url") is not None:
-        webbrowser.open = wbopentermux
-        webbrowser.open_new = wbopennewtermux
     cred = None
     working_dir = os.getcwd()
     token_dir = 'token files'
@@ -36,13 +45,13 @@ def create_service(client_secret_file:str, api_name, api_version, scope, prefix=
     if not cred or not cred.valid:
         if cred and cred.expired and cred.refresh_token:
             try: cred.refresh(Request())
-            except:
+            except Exception as hi:
                 os.remove(os.path.join(working_dir, token_dir, pickle_file))
                 flow = InstalledAppFlow.from_client_secrets_file(CLIENT_SECRET_FILE, SCOPES)
-                cred = flow.run_local_server(success_message="done",redirect_uri_trailing_slash=False,termux=True)
+                cred = flow.run_local_server(success_message="done",redirect_uri_trailing_slash=False, port=port)
         else:
             flow = InstalledAppFlow.from_client_secrets_file(CLIENT_SECRET_FILE, SCOPES)
-            cred = flow.run_local_server(success_message="done",redirect_uri_trailing_slash=False,termux=True)
+            cred = flow.run_local_server(success_message="done",redirect_uri_trailing_slash=False,port=port)
 
         with open(os.path.join(working_dir, token_dir, pickle_file), 'wb') as token:
             pickle.dump(cred, token)

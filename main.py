@@ -2,12 +2,13 @@ import requests
 import datetime as dt
 from flask import Flask, render_template_string, request, Response
 from bs4 import BeautifulSoup
-import idk#, click, logging
+import idk, json, os#, click, logging
 from io import BytesIO
 from googleapiclient.http import MediaIoBaseDownload
 from urllib.parse import unquote
 
 drive = idk.create_service("client_secret.json", "drive", 'v3', ["drive.file","drive.photos.readonly","drive.readonly","drive.metadata","drive","drive.readonly","drive.appdata"])
+root = drive.files().list(q="name = 'Uncaged Library'", fields="files(id)").execute()["files"][0]["id"]
 a = Flask(__name__)
 
 # def secho(text, file=None, nl=None, err=None, color=None, **styles):
@@ -44,7 +45,7 @@ def subfolder(folder):
 
 def subfolderFetch(folderId):
     if folderId == "\u000a": return []
-    if folderId == "a": folderId = "1-1aFpPpcGzW7ifhGXYyEzD3mSwwlHM6i"
+    if folderId == "a": folderId = root 
 
     files = []
     pageToken = None
