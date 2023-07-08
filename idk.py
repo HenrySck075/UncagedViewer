@@ -3,6 +3,12 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from google.oauth2.credentials import Credentials
 from google.auth.transport.requests import Request
 from googleapiclient.discovery import build
+import webbrowser
+from shutil import which
+
+def wbopentermux(url,new=0,autoraise=True):
+    os.system(url)
+def wbopennewtermux(url): wbopentermux(url)
 
 def create_service(client_secret_file:str, api_name, api_version, scope, prefix=''):
     CLIENT_SECRET_FILE = client_secret_file
@@ -10,6 +16,10 @@ def create_service(client_secret_file:str, api_name, api_version, scope, prefix=
     API_VERSION = api_version
     SCOPES = [f'https://www.googleapis.com/auth/{s}' for s in scope]
 	
+    #termux instance
+    if which("termux-open-url") is not None:
+        webbrowser.open = wbopentermux
+        webbrowser.open_new = wbopennewtermux
     cred = None
     working_dir = os.getcwd()
     token_dir = 'token files'
