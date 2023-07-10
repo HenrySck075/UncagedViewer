@@ -82,7 +82,7 @@ function on(idx) {
 function loadImage(idx) {
     let img = document.getElementById("imgViewer").getElementsByTagName("img")[1]
     let d = pageHistory[navHistory[current]].data
-    img.src = `/api/file?fileId=${d[idx].id}&filename=${d[idx].id}`
+    img.src = `/api/file?fileId=${d[idx].id}&filename=${d[idx].name}`
 }
 
 function prevImg() {
@@ -236,22 +236,22 @@ document.addEventListener("click", (e) => {
         }
     }
 })
+function refreshScript() {
+    // styles refresh
+    let s = document.head.getElementsByTagName("link")[1]
+    let temp = s.href
+    s.href = ""
+    s.href = temp
 
-addEventListener("keydown", (e) =>{
-    if (e.key == 'r' && e.altKey) {
-        // styles refresh
-        let s = document.head.getElementsByTagName("link")[1]
-        let temp = s.href
-        s.href = ""
-        s.href = temp
-
-        // scripts refresh
-        let scr = document.querySelectorAll(".s")
-        console.log(scr.length)
-        for (let i of scr) {
-            let temp = i.src
-            i.remove()
-            document.body.appendChild(newTag("script", {src:temp,class:'s'}))
-        }
+    // scripts refresh
+    let scr = document.querySelectorAll(".s")
+    console.log(scr.length)
+    for (let i of scr) {
+        let temp = i.src
+        i.remove()
+        document.body.appendChild(newTag("script", {src:temp,class:'s'}))
     }
-})
+}
+addEventListener("a", () => {refreshScript()})
+addEventListener("keydown", (e) =>{
+    if (e.key == 'r' && e.altKey) {refreshScript()})

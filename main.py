@@ -1,6 +1,6 @@
 import requests
 import datetime as dt
-from flask import Flask, render_template_string, request, Response
+from flask import Flask, render_template_string, request, send_file
 from bs4 import BeautifulSoup
 import idk, json, os#, click, logging
 from io import BytesIO
@@ -76,7 +76,7 @@ def loadThumbnails():
     if fileName not in thumbnailCache:
         thumbnailCache[fileName] = requests.get(unquote(thumbnailLink),headers={"upgrade-insecure-requests":"1"}).content
 
-    return Response(thumbnailCache[fileName],mimetype="image/png",headers={"Content-Disposition":"attachment;filename=thumbnail.png"})
+    return send_file(BytesIO(thumbnailCache[fileName]), as_attachment=True, download_name="thumbnail."+fileName.split(".")[0])
 
 @a.route("/api/file")
 def getFullFile():
@@ -89,10 +89,7 @@ def getFullFile():
     while done == False:
         _, done = downloader.next_chunk()
     
-    return Response(file.getvalue(),
-                       mimetype="image/png",
-                       headers={"Content-Disposition":
-                                    f"attachment;filename={filename}"})
+    return send_file(file,download_name=filename, as_attachment=True)
     
 
 a.run(port=5000, debug=True)
