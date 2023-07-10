@@ -4,10 +4,10 @@ let files = []
 const you = new Event("you")
 addEventListener("you", function() {
     if (document.getElementsByClassName("folder").length != 0 && document.getElementById("folder") == null) {
-        createRCCForClass("folder", [["hi", ""],["hello",""]])
+        createRCCForClass("folder", [["Copy link", "navigator.clipboard.writeText(window.location.origin+'/<<data-id>>')"],["hello",""]])
     }
     if (document.getElementsByClassName("file").length != 0 && document.getElementById("file") == null) {
-        createRCCForClass("file", [["hi", ""],["hello",""]])
+        createRCCForClass("file", [["Copy link", "navigator.clipboard.writeText(window.location.origin+'/file?fileId=<<data-id>>&filename=<<data-name>>')"],["Download","window.location.href = '/api/file?fileId=<<data-id>>&filename=<<data-name>>'"]])
     }
     var lazyImages = [].slice.call(document.querySelectorAll("img.lazy"));;
 
@@ -157,7 +157,10 @@ function navigate(idx) {
     let p = navHistory[current]
     let shjdifj = p
     if (shjdifj=="a") {shjdifj=""}
-    if (p!="proplayout") {
+    if (p=="proplayout") {
+        openProperties(0, true)
+    } else if (p=="noload") {
+    } else {
         window.history.pushState({}, "", `/${shjdifj}`)
 
         if (pageHistory[p] === undefined) {
@@ -170,8 +173,6 @@ function navigate(idx) {
             }
             main.removeChild(waitText)
         }
-    } else {
-        openProperties(0, true)
     }
 }
 
@@ -254,4 +255,5 @@ function refreshScript() {
 }
 addEventListener("a", () => {refreshScript()})
 addEventListener("keydown", (e) =>{
-    if (e.key == 'r' && e.altKey) {refreshScript()})
+    if (e.key == 'r' && e.altKey) {refreshScript()}}
+)

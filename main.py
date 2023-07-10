@@ -1,9 +1,10 @@
 import requests
 import datetime as dt
-from flask import Flask, render_template_string, request, send_file
+from flask import Flask, render_template_string, request, send_file, Response
 from bs4 import BeautifulSoup
-import idk, json, os#, click, logging
+import idk#, click, logging
 from io import BytesIO
+from magic import from_buffer
 from googleapiclient.http import MediaIoBaseDownload
 from urllib.parse import unquote
 
@@ -39,8 +40,18 @@ def main():
 @a.route("/<folder>")
 def subfolder(folder):
     template = BeautifulSoup(open("main.html", "r").read(), 'html.parser')
-    template.find(id="navigationHistory").string = f"let navHistory=['a','{folder}'];"
+    template.find(id="nav").string = f"let navHistory=['a','{folder}'];"
     template.find(id="main").attrs["data-current"] = folder
+    return render_template_string(template.prettify())
+
+@a.route("/file")
+def viewFile():
+    template = BeautifulSoup(open("main.html", "r").read(), 'html.parser')
+    template.find(id="nav").string = f"let navHistory=['noload'];"
+    template.find(id="window").attrs["style"] = "display:none"
+    template.find(id="serverMod").string = "pageHistory.noload={{data: [{{id: '{id}', name: '{name}' }}]}};on(0)".format(id=request.args.get("fileId","null"), name=request.args.get("filename","null"))
+    for i in template.findAll(attrs={"class":"noidea"}): i.attrs["style"] = "display:none"
+    template.find(id="imgViewerHead").find("img").attrs["style"] = 'display:none'
     return render_template_string(template.prettify())
 
 def subfolderFetch(folderId):
@@ -81,7 +92,7 @@ def loadThumbnails():
 @a.route("/api/file")
 def getFullFile():
     fileId = request.args.get("fileId")
-    filename = request.args.get("filename")
+    filename = request.args.get("filename", None)
     req = drive.files().get_media(fileId=fileId, acknowledgeAbuse=True)
     file = BytesIO()
     downloader = MediaIoBaseDownload(file, req)
@@ -89,7 +100,7 @@ def getFullFile():
     while done == False:
         _, done = downloader.next_chunk()
     
-    return send_file(file,download_name=filename, as_attachment=True)
+    return Response(file.getvalue(), mimetype=f"image/{filename.split('.')[-1]}", headers={"Content-Disposition": f"attachment;filename={filename or 'tuanlolicon.'+from_buffer(file.read(1024),mime=True).split('/')[1]}"})
     
 
 a.run(port=5000, debug=True)

@@ -81,7 +81,12 @@ function createRCCForClass(className,buttons) {
                 btn.innerHTML = "<strong>Open</strong>"
                 contextMenu.appendChild(btn)
                 for (let i of JSON.parse(contextMenu.dataset.btns)) {
-                    let btn = newTag("p",{"class": "button","style": "height: 43px;", "onclick":`toggleContext('${className}'); `+i[1]})
+                    let clickEvent = i[1]
+                    let k = [...clickEvent.matchAll(/<<[^<>]*>>/g)]
+                    for (let e of k) {
+                        clickEvent = clickEvent.replace(e[0], elem.getAttribute(e[0].replace("<<","").replace(">>","")))
+                    }
+                    let btn = newTag("p",{"class": "button","style": "height: 43px;", "onclick": `toggleContext('${className}'); `+clickEvent})
                     btn.innerText = i[0]
                     contextMenu.appendChild(btn)
                 }

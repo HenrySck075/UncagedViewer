@@ -4,7 +4,7 @@
     <title>Uncaged Viewer</title>
     <link rel="icon" type="image/x-icon" href="/static/icons8-google-drive-32.png">
     <link rel="stylesheet" href="/static/mmb.css">
-    <script id="navigationHistory">let navHistory = ["a"];</script>
+    <script id="nav">let navHistory = ["a"];</script>
 </head>
 <!--<div style="height: 20; border: 1px solid #535353; margin:0" id="folderNavigator">
                 <p style="top:0; text-align: center; color:#fff" class="folderNavEntry" onclick="window.location.href = '/'">Uncaged Library</p>-->
@@ -38,9 +38,9 @@
             
         </div>
         <div id="imgViewer" class="micaBg" style="z-index: 3;">
-            <div id="imgViewerHead" style="display: flex; justify-content: right; width:auto">
-                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAeElEQVR4nO3TQQqAIBBGYa9Xeq26TDqHqCvoYVrVJqIgSMEYoffB7P+HaAwAAAAAADhNfRp9l1bfp+3tgv3mxN0v2LSYXK2Nl+PyAxocLzUDNMZLrQCt8VIjQHO8FAU8fGLt8VL2AnG4RrQwPrg4ZwcAAAAAAPADOx4QUPABc/NwAAAAAElFTkSuQmCC"
-            onclick="off()" ontouchstart="off()" style="float:right;" class="you" />
+            <div id="imgViewerHead" style="display: flex; justify-content: right; width:auto; height: 40px;">
+                <img style="margin:0" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAeElEQVR4nO3TQQqAIBBGYa9Xeq26TDqHqCvoYVrVJqIgSMEYoffB7P+HaAwAAAAAADhNfRp9l1bfp+3tgv3mxN0v2LSYXK2Nl+PyAxocLzUDNMZLrQCt8VIjQHO8FAU8fGLt8VL2AnG4RrQwPrg4ZwcAAAAAAPADOx4QUPABc/NwAAAAAElFTkSuQmCC"
+                onclick="off()" ontouchstart="off()" style="float:right;" class="you" />
             </div>
             
             
@@ -85,3 +85,4 @@
 <script src="/static/draggable.js" class="s"></script>
 <script src="/static/also.js" class="s"></script>
 <script defer src="/static/sendHelp.js"></script>
+<script id="serverMod"></script>

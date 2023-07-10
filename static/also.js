@@ -24,7 +24,7 @@ function hi(files) {
             let d = document.createElement("div")
             d.id=index
             try {
-                d.classList.add(i.name)
+                d.dataset.name = i.name
             } catch (err) {
                 alert("error: "+err.message)
                 continue
