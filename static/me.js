@@ -109,12 +109,16 @@ function off() {
     a.style.transition = "cubic-bezier(0.19, 1, 0.22, 1) 0.5s"
     a.style.transform = "scale(0,0)"
 }
-woke.onmessage = (data) => {
-    if (data.data.length <= 100) {last = data.data.length}
-    hi(data.data)
+woke.onmessage = (d) => {
+    console.log(d)
+    let data = d.data[0]
+    if (d.data[1]) {document.title = "Uncaged Viewer (Python)"}
+    else {document.title = "Uncaged Viewer (Node.js)"}
+    if (data.length <= 100) {last = data.length}
+    hi(data)
     pageHistory[navHistory[current]] = {node: null, data: []}
     pageHistory[navHistory[current]].node = Object.assign([],main.children)
-    pageHistory[navHistory[current]].data = data.data
+    pageHistory[navHistory[current]].data = data
     let theDiv = document.getElementById("window")
     theDiv.onscroll = function(ev) {
         let dat = pageHistory[navHistory[current]].data

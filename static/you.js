@@ -4,6 +4,6 @@ onmessage = (d) => {
     http.send()
     if (http.status == 200) {
         let data = JSON.parse(http.responseText)
-        postMessage(data)
+        postMessage([data, http.getResponseHeader("x-powered-by") == null])
     }
 }
