@@ -111,5 +111,5 @@ create_service("client_secret.json", "drive", "v3", ["drive.file","drive.photos.
       })
     })
   })
-  app.listen(5002, "localhost", ()=>{})
+  app.listen(5002, fs.existsSync("./localhost") ? "localhost" : "0.0.0.0", ()=>{})
 })

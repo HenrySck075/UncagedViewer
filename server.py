@@ -2,7 +2,7 @@ import requests
 import datetime as dt
 from flask import Flask, render_template_string, request, send_file, Response
 from bs4 import BeautifulSoup
-import idk#, click, logging
+import idk,os#, click, logging
 from io import BytesIO
 from magic import from_buffer
 from googleapiclient.http import MediaIoBaseDownload
@@ -91,4 +91,4 @@ def getFullFile():
     return Response(file.getvalue(), mimetype=f"image/{filename.split('.')[-1]}", headers={"Content-Disposition": f"attachment;filename={filename or 'tuanlolicon.'+from_buffer(file.read(1024),mime=True).split('/')[1]}"})
     
 
-a.run(port=5000, debug=True)
+a.run("localhost" if os.path.exists("./localhost") else "0.0.0.0", port=5000)

@@ -2,3 +2,4 @@ token files/
 __pycache__/
 files.json
 node_modules/
+localhost
